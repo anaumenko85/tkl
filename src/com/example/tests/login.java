@@ -21,14 +21,22 @@ public class login {
   }
 
   @Test
-  public void testUntitled2() throws Exception {
-    driver.get(baseUrl + "/Account/Login");
+  public void mainTest()  throws Exception{
+	  goToMainPage();
+	  testLogin("alex","123456");
+	  AddUser.testAddUser();
+  }
+  private void testLogin(String login, String password) {
     driver.findElement(By.id("UserName")).clear();
-    driver.findElement(By.id("UserName")).sendKeys("alex");
+    driver.findElement(By.id("UserName")).sendKeys(login);
     driver.findElement(By.id("Password")).clear();
-    driver.findElement(By.id("Password")).sendKeys("123456");
+    driver.findElement(By.id("Password")).sendKeys(password);
     driver.findElement(By.cssSelector("input.btn.btn-default")).click();
   }
+
+private void goToMainPage() {
+	driver.get(baseUrl + "/Account/Login");
+}
 
   @After
   public void tearDown() throws Exception {
